@@ -36,6 +36,25 @@ namespace Systems
                     tf.ValueRW.Position.y -= 1;
                 }
             }
+            foreach (var (tf, ent) in SystemAPI.Query<RefRW<LocalTransform>>().WithAll<Player2Tag>().WithEntityAccess())
+            {
+                if (Input.GetKeyDown(KeyCode.RightArrow))
+                {
+                    tf.ValueRW.Position.x += 1;
+                }
+                else if (Input.GetKeyDown(KeyCode.LeftArrow))
+                {
+                    tf.ValueRW.Position.x -= 1;
+                }
+                else if (Input.GetKeyDown(KeyCode.UpArrow))
+                {
+                    tf.ValueRW.Position.y += 1;
+                }
+                else if (Input.GetKeyDown(KeyCode.DownArrow))
+                {
+                    tf.ValueRW.Position.y -= 1;
+                }
+            }
         }
 
     }

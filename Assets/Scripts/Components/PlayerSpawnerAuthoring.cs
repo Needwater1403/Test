@@ -8,12 +8,14 @@ using UnityEngine;
 
 public partial struct PlayerSpawnerComponent : IComponentData
 {
-    public Entity prefab;
+    public Entity player1;
+    public Entity player2;
     public bool canSpawn;
 }
 public class PlayerSpawnerAuthoring : MonoBehaviour
 {
-    public GameObject Prefab;
+    public GameObject player1;
+    public GameObject player2;
     public bool canSpawn;
     public class PlayerSpawnerComponentBaker : Baker<PlayerSpawnerAuthoring>
     {
@@ -23,7 +25,8 @@ public class PlayerSpawnerAuthoring : MonoBehaviour
             AddComponent(entity,
                 new PlayerSpawnerComponent
                 {
-                    prefab = GetEntity(authoring.Prefab, TransformUsageFlags.Dynamic),
+                    player1 = GetEntity(authoring.player1, TransformUsageFlags.Dynamic),
+                    player2 = GetEntity(authoring.player2, TransformUsageFlags.Dynamic),
                     canSpawn = authoring.canSpawn,
                 });
         }

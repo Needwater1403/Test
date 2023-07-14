@@ -23,29 +23,29 @@ public partial struct SquareColorSystem : ISystem
             {
                 case 0:
                    {
-                        //ecb.SetComponent(en, new MaterialMeshInfo
-                        //{
-                        //    MaterialID = m.ValueRO.whiteMaterialID,
-                        //    MeshID = m.ValueRO.meshID,
-                        //});
+                        ecb.SetComponent(en, new MaterialMeshInfo
+                        {
+                            MaterialID = m.ValueRO.WhiteMaterialID,
+                            MeshID = m.ValueRO.meshID,
+                        });
                         break;
                     }
                 case 1:
                     {
-                        //ecb.SetComponent(en, new MaterialMeshInfo
-                        //{
-                        //    MaterialID = m.ValueRO.greyMaterialID,
-                        //    MeshID = m.ValueRO.meshID,
-                        //});
+                        ecb.SetComponent(en, new MaterialMeshInfo
+                        {
+                            MaterialID = m.ValueRO.GreyMaterialID,
+                            MeshID = m.ValueRO.meshID,
+                        });
                         break;
                     }
                 case 2:
                     {
-                        //ecb.SetComponent(en, new MaterialMeshInfo
-                        //{
-                        //    MaterialID = m.ValueRO.redMaterialID,
-                        //    MeshID = m.ValueRO.meshID,
-                        //});
+                        ecb.SetComponent(en, new MaterialMeshInfo
+                        {
+                            MaterialID = m.ValueRO.RedMaterialID,
+                            MeshID = m.ValueRO.meshID,
+                        });
                         break;
                     }
                 case 3:
@@ -53,7 +53,7 @@ public partial struct SquareColorSystem : ISystem
                         
                         ecb.SetComponent(en, new MaterialMeshInfo
                         {
-                            MaterialID = m.ValueRO.materialID,
+                            MaterialID = m.ValueRO.GreenMaterialID,
                             MeshID = m.ValueRO.meshID,
                         });
                         break;

@@ -26,6 +26,13 @@ public partial struct SquareStateSystem : ISystem
                     squ.ValueRW.state = (int)color.Green;
                 }
             }
+            foreach (var pl in SystemAPI.Query<RefRW<LocalTransform>>().WithAll<Player2Tag>())
+            {
+                if (pl.ValueRW.Position.x == tf.ValueRW.Position.x && pl.ValueRW.Position.y == tf.ValueRW.Position.y)
+                {
+                    squ.ValueRW.state = (int)color.Red;
+                }
+            }
         }
         ecb.Playback(state.EntityManager);
         ecb.Dispose();

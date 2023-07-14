@@ -7,12 +7,18 @@ using UnityEngine;
 
 public struct MeshAndMaterialComponent : IComponentData
 {
-    public BatchMaterialID materialID;
+    public BatchMaterialID WhiteMaterialID;
+    public BatchMaterialID GreyMaterialID;
+    public BatchMaterialID RedMaterialID;
+    public BatchMaterialID GreenMaterialID;
     public BatchMeshID meshID;
 }
 public class MeshAndMaterialAuthoring : MonoBehaviour
 {
-    public Material material;
+    public Material WhiteMaterial;
+    public Material GreyMaterial;
+    public Material RedMaterial;
+    public Material GreenMaterial;
     public Mesh mesh;
     public class MeshAndMaterialComponentBaker : Baker<MeshAndMaterialAuthoring>
     {
@@ -22,7 +28,10 @@ public class MeshAndMaterialAuthoring : MonoBehaviour
             var hybridRender = World.DefaultGameObjectInjectionWorld.GetExistingSystemManaged<EntitiesGraphicsSystem>();
             AddComponent(entity, new MeshAndMaterialComponent
             {
-                materialID = hybridRender.RegisterMaterial(authoring.material),
+                WhiteMaterialID = hybridRender.RegisterMaterial(authoring.WhiteMaterial),
+                GreyMaterialID = hybridRender.RegisterMaterial(authoring.GreyMaterial),
+                RedMaterialID = hybridRender.RegisterMaterial(authoring.RedMaterial),
+                GreenMaterialID = hybridRender.RegisterMaterial(authoring.GreenMaterial),
                 meshID = hybridRender.RegisterMesh(authoring.mesh),
             });
         }

@@ -23,10 +23,17 @@ public partial struct PlayerSpawnerSystem : ISystem
             if (spawner.ValueRW.canSpawn)
             {
                 spawner.ValueRW.canSpawn = false;
-                var newPlayerE = ecb.Instantiate( spawner.ValueRO.prefab);
+                var newPlayerE = ecb.Instantiate( spawner.ValueRO.player1);
                 ecb.SetComponent(newPlayerE, new LocalTransform
                 {
                     Position = new float3(0,0,-1),
+                    Rotation = quaternion.identity,
+                    Scale = 1,
+                });
+                var newPlayer2E = ecb.Instantiate(spawner.ValueRO.player2);
+                ecb.SetComponent(newPlayer2E, new LocalTransform
+                {
+                    Position = new float3(9, 9, -1),
                     Rotation = quaternion.identity,
                     Scale = 1,
                 });
