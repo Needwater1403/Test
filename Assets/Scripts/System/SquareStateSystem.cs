@@ -25,6 +25,7 @@ public partial struct SquareStateSystem : ISystem
                 {
                     squ.ValueRW.state = (int)color.Green;
                 }
+                //squ.ValueRW.isOccupied = true;
             }
             foreach (var pl in SystemAPI.Query<RefRW<LocalTransform>>().WithAll<Player2Tag>())
             {
@@ -32,6 +33,7 @@ public partial struct SquareStateSystem : ISystem
                 {
                     squ.ValueRW.state = (int)color.Red;
                 }
+                //squ.ValueRW.isOccupied = true;
             }
         }
         ecb.Playback(state.EntityManager);

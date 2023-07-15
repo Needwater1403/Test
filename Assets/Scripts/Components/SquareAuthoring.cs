@@ -12,6 +12,7 @@ public partial struct SquareComponent : IComponentData
     public int state;
     public int rowID;
     public int colID;
+    public bool isOccupied;
 }
 
 public class SquareAuthoring : MonoBehaviour
@@ -28,6 +29,7 @@ public class SquareComponentBaker : Baker<SquareAuthoring>
                 new SquareComponent
                 {
                     state = (int)color.Empty,
+                    isOccupied = false,
                 });
         }
     }

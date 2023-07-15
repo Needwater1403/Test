@@ -37,6 +37,7 @@ public partial struct SquareColorSystem : ISystem
                             MaterialID = m.ValueRO.GreyMaterialID,
                             MeshID = m.ValueRO.meshID,
                         });
+                        squ.ValueRW.isOccupied = true;
                         break;
                     }
                 case 2:
@@ -46,6 +47,7 @@ public partial struct SquareColorSystem : ISystem
                             MaterialID = m.ValueRO.RedMaterialID,
                             MeshID = m.ValueRO.meshID,
                         });
+                        squ.ValueRW.isOccupied = true;
                         break;
                     }
                 case 3:
@@ -56,6 +58,7 @@ public partial struct SquareColorSystem : ISystem
                             MaterialID = m.ValueRO.GreenMaterialID,
                             MeshID = m.ValueRO.meshID,
                         });
+                        squ.ValueRW.isOccupied = true;
                         break;
                     }
             }

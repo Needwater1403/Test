@@ -6,6 +6,7 @@ using Unity.Mathematics;
 using Unity.Rendering;
 using Unity.Transforms;
 using UnityEngine;
+
 using static UnityEditor.PlayerSettings;
 
 public partial struct PlayerSpawnerSystem : ISystem
@@ -23,17 +24,20 @@ public partial struct PlayerSpawnerSystem : ISystem
             if (spawner.ValueRW.canSpawn)
             {
                 spawner.ValueRW.canSpawn = false;
+                System.Random random = new System.Random();
+                int x = random.Next(0, 4);
+                int y = random.Next(0, 9);
                 var newPlayerE = ecb.Instantiate( spawner.ValueRO.player1);
                 ecb.SetComponent(newPlayerE, new LocalTransform
                 {
-                    Position = new float3(0,0,-1),
+                    Position = new float3(x,y,-1),
                     Rotation = quaternion.identity,
                     Scale = 1,
                 });
                 var newPlayer2E = ecb.Instantiate(spawner.ValueRO.player2);
                 ecb.SetComponent(newPlayer2E, new LocalTransform
                 {
-                    Position = new float3(9, 9, -1),
+                    Position = new float3(9-x, 9-y, -1),
                     Rotation = quaternion.identity,
                     Scale = 1,
                 });
