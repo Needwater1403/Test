@@ -5,11 +5,10 @@ using Unity.Mathematics;
 using Unity.Rendering;
 using Unity.Transforms;
 using UnityEngine;
-using static UnityEditor.PlayerSettings;
 
 namespace Systems
 {
-    public partial struct BossSpawnerSystem : ISystem
+    public partial struct BoardSpawnerSystem : ISystem
     {
         //readonly RefRO<SquarePositionAsset> asset;
 
@@ -21,10 +20,11 @@ namespace Systems
         public void OnUpdate(ref SystemState state)
         {
             EntityCommandBuffer ecb = new EntityCommandBuffer(Allocator.TempJob);
-            state.Dependency = new SpawnJob { deltaTime = SystemAPI.Time.DeltaTime, ecb = ecb.AsParallelWriter() }.ScheduleParallel(state.Dependency);
+            state.Dependency = new SpawnJob { deltaTime = SystemAPI.Time.DeltaTime, ecb = ecb.AsParallelWriter()}.ScheduleParallel(state.Dependency);
             state.Dependency.Complete();
             ecb.Playback(state.EntityManager);
             ecb.Dispose();
+            state.Enabled = false;  
         }
         public partial struct SpawnJob : IJobEntity
         {

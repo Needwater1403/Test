@@ -9,33 +9,31 @@ using Unity.Transforms;
 
 public partial struct SquareStateSystem : ISystem
 {
-    //public void OnCreate(ref SystemState state)
-    //{
-    //    state.RequireForUpdate<StartCommand>();
-    //}
+    public void OnCreate(ref SystemState state)
+    {
+        state.RequireForUpdate<PlayerTag>();
+        state.RequireForUpdate<Player2Tag>();
+    }
     [BurstCompile]
     public void OnUpdate(ref SystemState state)
     {
+        var p1 = state.EntityManager.CreateEntityQuery(typeof(PlayerTag)).GetSingletonEntity();
+        var tf1 = state.EntityManager.GetComponentData<LocalTransform>(p1).Position;
+        var p2 = state.EntityManager.CreateEntityQuery(typeof(Player2Tag)).GetSingletonEntity();
+        var tf2 = state.EntityManager.GetComponentData<LocalTransform>(p2).Position;
         EntityCommandBuffer ecb = new EntityCommandBuffer(Allocator.TempJob);
         foreach (var (tf, squ) in SystemAPI.Query<RefRW<LocalTransform>, RefRW<SquareComponent>>())
         {
-            foreach (var pl in SystemAPI.Query<RefRW<LocalTransform>>().WithAll<PlayerTag>())
+            if (tf1.x == tf.ValueRW.Position.x && tf1.y == tf.ValueRW.Position.y)
             {
-                if(pl.ValueRW.Position.x == tf.ValueRW.Position.x && pl.ValueRW.Position.y == tf.ValueRW.Position.y)
-                {
-                    squ.ValueRW.state = (int)color.Green;
-                }
-                //squ.ValueRW.isOccupied = true;
+                squ.ValueRW.state = (int)color.Green;
             }
-            foreach (var pl in SystemAPI.Query<RefRW<LocalTransform>>().WithAll<Player2Tag>())
+            if (tf2.x == tf.ValueRW.Position.x && tf2.y == tf.ValueRW.Position.y)
             {
-                if (pl.ValueRW.Position.x == tf.ValueRW.Position.x && pl.ValueRW.Position.y == tf.ValueRW.Position.y)
-                {
-                    squ.ValueRW.state = (int)color.Red;
-                }
-                //squ.ValueRW.isOccupied = true;
+                squ.ValueRW.state = (int)color.Red;
             }
         }
+        
         ecb.Playback(state.EntityManager);
         ecb.Dispose();
     }

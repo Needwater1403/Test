@@ -7,7 +7,6 @@ using Unity.Rendering;
 using Unity.Transforms;
 using UnityEngine;
 
-using static UnityEditor.PlayerSettings;
 
 public partial struct PlayerSpawnerSystem : ISystem
 {
@@ -26,7 +25,7 @@ public partial struct PlayerSpawnerSystem : ISystem
                 spawner.ValueRW.canSpawn = false;
                 System.Random random = new System.Random();
                 int x = random.Next(0, 4);
-                int y = random.Next(0, 9);
+                int y = random.Next(0, 6);
                 var newPlayerE = ecb.Instantiate( spawner.ValueRO.player1);
                 ecb.SetComponent(newPlayerE, new LocalTransform
                 {

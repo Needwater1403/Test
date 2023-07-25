@@ -12,6 +12,7 @@ public partial struct MovableComponent : IComponentData
     public int minY;
     public int maxX;
     public int maxY;
+    public int state;
 }
 
 public class MovableAuthoring : MonoBehaviour
@@ -33,6 +34,7 @@ public class MovableAuthoring : MonoBehaviour
                 minY = authoring.minY,
                 maxX = authoring.maxX,
                 maxY = authoring.maxY,
+                state = (int)dir.Stand,
             });
         }
     }
