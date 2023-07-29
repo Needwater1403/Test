@@ -91,7 +91,7 @@ namespace Systems
                             arr[3] = right;
                         }
                     }
-                    Debug.Log(up + " " + down + " " + left + " " + right + " ");
+                    //Debug.Log(up + " " + down + " " + left + " " + right + " ");
                     max = -100;
                     for (int i = 0; i < arr.Length; i++)
                     { 
@@ -100,8 +100,8 @@ namespace Systems
                             max = arr[i];
                         }
                     }
-                     //   Debug.Log(arr[0] + " " + arr[1] + " " + arr[2] + " " + arr[3] + " ");
-                    Debug.Log(max);
+
+                    //Debug.Log(max);
 
                     if (max == right && m.ValueRW.canMoveRight)
                     {
