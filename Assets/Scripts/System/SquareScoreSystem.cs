@@ -36,7 +36,6 @@ namespace Systems
                 }
                 a++;
                 b--;
-                Debug.Log(a + " " + b);
             }
             else
             {             

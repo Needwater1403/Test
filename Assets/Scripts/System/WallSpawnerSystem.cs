@@ -11,7 +11,7 @@ namespace Systems
         {
             state.RequireForUpdate<SquareComponent>();
         }
-        [BurstCompile]
+
         public void OnUpdate(ref SystemState state)
         {
             for (int i = 0; i < 3; i++)

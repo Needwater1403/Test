@@ -17,7 +17,7 @@ namespace Systems
         int right;
         int max;
         
-        [BurstCompile]
+
         public void OnUpdate(ref SystemState state)
         {   
             var p1 = state.EntityManager.CreateEntityQuery(typeof(PlayerTag)).GetSingletonEntity();

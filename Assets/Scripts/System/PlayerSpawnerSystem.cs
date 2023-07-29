@@ -1,11 +1,9 @@
 using Unity.Burst;
 using Unity.Collections;
 using Unity.Entities;
-using Unity.Entities.UniversalDelegates;
 using Unity.Mathematics;
-using Unity.Rendering;
 using Unity.Transforms;
-using UnityEngine;
+using System;
 
 
 public partial struct PlayerSpawnerSystem : ISystem
@@ -14,7 +12,7 @@ public partial struct PlayerSpawnerSystem : ISystem
     //{
     //    state.RequireForUpdate<StartCommand>();
     //}
-    [BurstCompile]
+
     public void OnUpdate(ref SystemState state)
     {
         EntityCommandBuffer ecb = new EntityCommandBuffer(Allocator.TempJob);

@@ -14,7 +14,7 @@ public partial struct SquareStateSystem : ISystem
         state.RequireForUpdate<PlayerTag>();
         state.RequireForUpdate<Player2Tag>();
     }
-    [BurstCompile]
+    
     public void OnUpdate(ref SystemState state)
     {
         var p1 = state.EntityManager.CreateEntityQuery(typeof(PlayerTag)).GetSingletonEntity();
