@@ -10,13 +10,12 @@ namespace Systems
 {
     public partial struct BoardSpawnerSystem : ISystem
     {
-        //readonly RefRO<SquarePositionAsset> asset;
+        public void OnCreate(ref SystemState state)
+        {
+            state.RequireForUpdate<StartCommand>();
+        }
 
-        //public void OnCreate(ref SystemState state)
-        //{
-        //    state.RequireForUpdate<StartCommand>();
-        //}
-        [BurstCompile]
+        //[BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
             EntityCommandBuffer ecb = new EntityCommandBuffer(Allocator.TempJob);
@@ -24,7 +23,6 @@ namespace Systems
             state.Dependency.Complete();
             ecb.Playback(state.EntityManager);
             ecb.Dispose();
-            state.Enabled = false;  
         }
         public partial struct SpawnJob : IJobEntity
         {
@@ -32,27 +30,23 @@ namespace Systems
             public EntityCommandBuffer.ParallelWriter ecb;
             void Execute(RefRW<BoardSpawnerComponent> spawner, RefRW<LocalTransform> tf)
             {
-                if (spawner.ValueRW.canSpawn)
+                for (int i = 0; i < spawner.ValueRO.num; i++)
                 {
-                    for (int i = 0; i < spawner.ValueRO.num; i++)
+                    for (int j = 0; j < spawner.ValueRO.num; j++)
                     {
-                        for (int j = 0; j < spawner.ValueRO.num; j++)
+                        var newEnemyE = ecb.Instantiate(0, spawner.ValueRO.prefab);
+                        ecb.SetComponent(i, newEnemyE, new LocalTransform
                         {
-                            var newEnemyE = ecb.Instantiate(0, spawner.ValueRO.prefab);
-                            ecb.SetComponent(i, newEnemyE, new LocalTransform
-                            {
-                                Position =  new float3(j, i, 0),
-                                Rotation = quaternion.identity,
-                                Scale = 1,
-                            });
-                            ecb.SetComponent(i, newEnemyE, new SquareComponent
-                            {
-                                rowID = i,
-                                colID = j,
-                            });
-                        }
+                            Position = new float3(j, i, 0),
+                            Rotation = quaternion.identity,
+                            Scale = 1,
+                        });
+                        ecb.SetComponent(i, newEnemyE, new SquareComponent
+                        {
+                            rowID = i,
+                            colID = j,
+                        });
                     }
-                    spawner.ValueRW.canSpawn = false;
                 }
             }
         }

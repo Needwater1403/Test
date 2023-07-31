@@ -13,14 +13,6 @@ public partial struct BoardSpawnerComponent : IComponentData
     public int num;
 }
 
-//public struct SquarePosition
-//{
-//    public BlobArray<float3> value;
-//}
-//public struct SquarePositionAsset : IComponentData
-//{
-//    public BlobAssetReference<SquarePosition> asset;
-//}
 public class BoardSpawnerAuthoring : MonoBehaviour
 {
     public GameObject Prefab;

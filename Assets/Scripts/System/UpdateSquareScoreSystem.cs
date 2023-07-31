@@ -12,6 +12,10 @@ namespace Systems
     [UpdateAfter(typeof(SquareScoreSystem))]
     public partial struct UpdateSquareScoreSystem : ISystem
     {
+        public void OnCreate(ref SystemState state)
+        {
+            state.RequireForUpdate<SquareComponent>();
+        }
         [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {

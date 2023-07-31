@@ -8,6 +8,7 @@ public partial struct MovableComponent : IComponentData
     public bool canMoveRight;
     public bool canMoveUp;
     public bool canMoveDown;
+    public bool isStuck;
     public int minX;
     public int minY;
     public int maxX;
@@ -35,6 +36,7 @@ public class MovableAuthoring : MonoBehaviour
                 maxX = authoring.maxX,
                 maxY = authoring.maxY,
                 state = (int)dir.Stand,
+                isStuck = false,
             });
         }
     }

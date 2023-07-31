@@ -11,10 +11,10 @@ using UnityEngine;
 
 public partial struct SquareColorSystem : ISystem
 {
-    //public void OnCreate(ref SystemState state)
-    //{
-    //    state.RequireForUpdate<StartCommand>();
-    //}
+    public void OnCreate(ref SystemState state)
+    {
+        state.RequireForUpdate<SquareComponent>();
+    }
     [BurstCompile]
     public void OnUpdate(ref SystemState state)
     {

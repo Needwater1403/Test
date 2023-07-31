@@ -1,3 +1,4 @@
+using CortexDeveloper.ECSMessages.Service;
 using Unity.Burst;
 using Unity.Entities;
 using Unity.Transforms;
@@ -9,7 +10,7 @@ namespace Systems
     {
         public void OnCreate(ref SystemState state)
         {
-            state.RequireForUpdate<SquareComponent>();
+            state.RequireForUpdate<StartCommand>();
         }
 
         public void OnUpdate(ref SystemState state)
@@ -31,7 +32,6 @@ namespace Systems
                     }
                 }
             }
-            state.Enabled = false;
         }
     }
 }

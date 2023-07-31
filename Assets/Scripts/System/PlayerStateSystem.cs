@@ -9,10 +9,10 @@ using Unity.Transforms;
 
 public partial struct PlayerStateSystem : ISystem
 {
-    //public void OnCreate(ref SystemState state)
-    //{
-    //    state.RequireForUpdate<StartCommand>();
-    //}
+    public void OnCreate(ref SystemState state)
+    {
+        state.RequireForUpdate<MovableComponent>();
+    }
     [BurstCompile]
     public void OnUpdate(ref SystemState state)
     {

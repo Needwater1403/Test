@@ -16,8 +16,11 @@ namespace Systems
         int left;
         int right;
         int max;
-        
 
+        public void OnCreate(ref SystemState state)
+        {
+            state.RequireForUpdate<MovableComponent>();
+        }
         public void OnUpdate(ref SystemState state)
         {   
             var p1 = state.EntityManager.CreateEntityQuery(typeof(PlayerTag)).GetSingletonEntity();
@@ -67,11 +70,6 @@ namespace Systems
                             up = squ.ValueRW.point;
                             arr[0] = up;
                         }
-                        //else if( tf1.ValueRW.Position.x == tf.ValueRW.Position.x && tf1.ValueRW.Position.y == tf.ValueRW.Position.y + 1 && squ.ValueRW.isOccupied)
-                        //{
-                        //    up = 0;
-                        //    arr[0] = up;
-                        //}
 
                         if (tf1.ValueRW.Position.x == tf.ValueRW.Position.x && tf1.ValueRW.Position.y == tf.ValueRW.Position.y - 1 && !squ.ValueRW.isOccupied)
                         {

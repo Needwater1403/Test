@@ -13,6 +13,7 @@ public partial struct SquareStateSystem : ISystem
     {
         state.RequireForUpdate<PlayerTag>();
         state.RequireForUpdate<Player2Tag>();
+        state.RequireForUpdate<SquareComponent>();
     }
     
     public void OnUpdate(ref SystemState state)

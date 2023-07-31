@@ -15,8 +15,9 @@ namespace Systems
         {
             a = 0;
             b = 9;
+            state.RequireForUpdate<SquareComponent>();
         }
-        [BurstCompile]
+        //[BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
             if (a < b) { 
@@ -36,13 +37,9 @@ namespace Systems
                 }
                 a++;
                 b--;
+                Debug.Log(a + ", " + b);
             }
-            else
-            {             
-                state.Enabled = false;
-            }
-            
-
+           
         }
 
     }
